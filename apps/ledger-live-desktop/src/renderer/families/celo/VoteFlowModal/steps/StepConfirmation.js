@@ -41,7 +41,7 @@ function StepConfirmation({ t, optimisticOperation, error, signed }: StepProps &
   if (error) {
     return (
       <Container shouldSpace={signed}>
-        <TrackPage category="Vote Celo" name="Step Confirmation Error" />
+        <TrackPage category="Celo Vote" name="Step Confirmation Error" />
         {signed ? (
           <BroadcastErrorDisclaimer
             title={<Trans i18nKey="celo.vote.steps.confirmation.broadcastError" />}

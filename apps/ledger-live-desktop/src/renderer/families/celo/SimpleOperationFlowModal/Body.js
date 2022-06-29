@@ -102,8 +102,8 @@ const Body = ({
   name,
   mode,
 }: Props) => {
-  const [optimisticOperation, setOptimisticOperation] = useState(null);
-  const [transactionError, setTransactionError] = useState(null);
+  const [optimisticOperation, setOptimisticOperation] = useState<Operation | null>(null);
+  const [transactionError, setTransactionError] = useState<Error | null>(null);
   const [signed, setSigned] = useState(false);
   const dispatch = useDispatch();
 

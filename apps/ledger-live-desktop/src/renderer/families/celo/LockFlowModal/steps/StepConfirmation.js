@@ -33,7 +33,7 @@ function StepConfirmation({ t, optimisticOperation, error, signed }: StepProps &
   if (optimisticOperation) {
     return (
       <Container>
-        <TrackPage category="Lock Flow" name="Step Confirmed" />
+        <TrackPage category="Celo Lock" name="Step Confirmed" />
         <SuccessDisplay
           title={<Trans i18nKey="celo.lock.steps.confirmation.success.title" />}
           description={multiline(t("celo.lock.steps.confirmation.success.textVote"))}
@@ -45,7 +45,7 @@ function StepConfirmation({ t, optimisticOperation, error, signed }: StepProps &
   if (error) {
     return (
       <Container shouldSpace={signed}>
-        <TrackPage category="Lock Flow" name="Step Confirmation Error" />
+        <TrackPage category="Celo Lock" name="Step Confirmation Error" />
         {signed ? (
           <BroadcastErrorDisclaimer
             title={<Trans i18nKey="celo.lock.steps.confirmation.broadcastError" />}
@@ -88,7 +88,6 @@ export function StepConfirmationFooter({
         <Trans i18nKey="common.close" />
       </Button>
       {optimisticOperation ? (
-        // FIXME make a standalone component!
         <Button
           primary
           ml={2}

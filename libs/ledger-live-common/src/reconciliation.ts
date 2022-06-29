@@ -391,8 +391,7 @@ export function patchAccount(
 
   if (
     updatedRaw.celoResources &&
-    // @ts-expect-error check if this is valid for deep equal check
-    account.celoResources !== updatedRaw.celoResources
+    !isEqual(account.celoResources, updatedRaw.celoResources)
   ) {
     next.celoResources = fromCeloResourcesRaw(updatedRaw.celoResources);
     changed = true;

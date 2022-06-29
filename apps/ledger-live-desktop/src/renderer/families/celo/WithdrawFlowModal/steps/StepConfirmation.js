@@ -38,7 +38,7 @@ function StepConfirmation({
   if (optimisticOperation) {
     return (
       <Container>
-        <TrackPage category="Withdraw Flow" name="Step Confirmed" />
+        <TrackPage category="Celo Withdraw" name="Step Confirmed" />
         <SyncOneAccountOnMount priority={10} accountId={optimisticOperation.accountId} />
         <SuccessDisplay
           title={<Trans i18nKey="celo.withdraw.steps.confirmation.success.title" />}
@@ -55,7 +55,7 @@ function StepConfirmation({
   if (error) {
     return (
       <Container shouldSpace={signed}>
-        <TrackPage category="Withdraw Flow" name="Step Confirmation Error" />
+        <TrackPage category="Celo Withdraw" name="Step Confirmation Error" />
         {signed ? (
           <BroadcastErrorDisclaimer
             title={<Trans i18nKey="celo.withdraw.steps.confirmation.broadcastError" />}
@@ -83,7 +83,6 @@ export function StepConfirmationFooter({
         <Trans i18nKey="common.close" />
       </Button>
       {optimisticOperation ? (
-        // FIXME make a standalone component!
         <Button
           primary
           ml={2}

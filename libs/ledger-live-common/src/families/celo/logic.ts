@@ -1,9 +1,14 @@
 import { Account } from "../../types";
-import { CeloPendingWithdrawal, CeloValidatorGroup, CeloVote, CeloVoteStatus } from "./types";
+import {
+  CeloPendingWithdrawal,
+  CeloValidatorGroup,
+  CeloVote,
+  CeloVoteStatus,
+} from "./types";
 import { BigNumber } from "bignumber.js";
 
-export const PRELOAD_MAX_AGE = 10 * 60 * 1000;
-export const LEDGER_BY_FIGMENT_VALIDATOR_GROUP_ADDRESS =
+export const PRELOAD_MAX_AGE = 10 * 60 * 1000; // 10 minutes, used for max age in preload strategy
+const LEDGER_BY_FIGMENT_VALIDATOR_GROUP_ADDRESS =
   "0x0861a61Bf679A30680510EcC238ee43B82C5e843";
 
 export const availablePendingWithdrawals = (
@@ -60,3 +65,11 @@ export const voteStatus = (vote: CeloVote): CeloVoteStatus =>
   vote.type === "pending" && vote.activatable
     ? "awaitingActivation"
     : vote.type;
+
+export const fallbackValidatorGroup = (
+  address: string
+): CeloValidatorGroup => ({
+  address: address,
+  name: address,
+  votes: new BigNumber(0),
+});

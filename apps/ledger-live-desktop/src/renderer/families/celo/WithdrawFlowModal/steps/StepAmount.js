@@ -106,7 +106,7 @@ export default function StepAmount({
 
   return (
     <Box flow={1}>
-      <TrackPage category="Withdraw Flow" name="Step 1" />
+      <TrackPage category="Celo Withdraw" name="Step 1" />
       {error ? <ErrorBanner error={error} /> : null}
       <Box vertical>
         {pendingWithdrawals.map(({ value, time, index }) => {

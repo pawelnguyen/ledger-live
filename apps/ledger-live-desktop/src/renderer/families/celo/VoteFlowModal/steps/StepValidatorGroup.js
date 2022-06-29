@@ -41,7 +41,7 @@ export default function StepValidatorGroup({
 
   return (
     <Box flow={1}>
-      <TrackPage category="Celo Voting" name="Step ValidatorGroup" />
+      <TrackPage category="Celo Vote" name="Step ValidatorGroup" />
       {error && <ErrorBanner error={error} />}
       <ValidatorGroupsField
         account={account}

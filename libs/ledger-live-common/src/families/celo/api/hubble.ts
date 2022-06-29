@@ -39,8 +39,6 @@ const fetchValidatorGroups = async () => {
   return data.items;
 };
 
-//TODO: fetch extra - validator group addresses for vote etc. Rename freeze -> lock etc
-
 const getOperationType = (type: string): OperationType => {
   switch (type) {
     case "InternalTransferSent":
@@ -82,8 +80,9 @@ const transactionToOperation = (
   const data = transaction.data;
   const sender = data?.Account || data?.from;
   const recipient = data?.Group || data?.to;
-  //TODO: fetch/calculate fee from indexer when gas data is available
-  const fee = new BigNumber(150930000000000);
+  const fee = new BigNumber(transaction.data.gas_used).times(
+    new BigNumber(transaction.data.gas_price)
+  );
   const value =
     type === "LOCK"
       ? new BigNumber(transaction.amount).plus(fee)
@@ -146,7 +145,6 @@ export const getValidatorGroups = async (): Promise<CeloValidatorGroup[]> => {
   const validatorGroups = await fetchValidatorGroups();
 
   const result = validatorGroups.map((validatorGroup) => ({
-    //TODO: toLowerCase()?
     address: validatorGroup.address,
     name: validatorGroup.name || validatorGroup.address,
     votes: new BigNumber(validatorGroup.active_votes).plus(
@@ -157,20 +155,13 @@ export const getValidatorGroups = async (): Promise<CeloValidatorGroup[]> => {
 };
 
 const customValidatorGroupsOrder = (validatorGroups): CeloValidatorGroup[] => {
-  let sortedValidatorGroups = validatorGroups.sort((a, b) =>
-    b.votes.minus(a.votes)
-  );
+  const defaultValidatorGroup = validatorGroups.find(isDefaultValidatorGroup);
 
-  const defaultValidatorGroup = sortedValidatorGroups.find(
-    isDefaultValidatorGroup
-  );
+  const sortedValidatorGroups = [...validatorGroups]
+    .sort((a, b) => b.votes.minus(a.votes))
+    .filter((group) => !isDefaultValidatorGroup(group));
 
-  if (defaultValidatorGroup) {
-    sortedValidatorGroups = sortedValidatorGroups.filter(
-      (validatorGroup) => !isDefaultValidatorGroup(validatorGroup)
-    );
-    sortedValidatorGroups.unshift(defaultValidatorGroup);
-  }
-
-  return sortedValidatorGroups;
+  return defaultValidatorGroup
+    ? [defaultValidatorGroup, ...sortedValidatorGroups]
+    : sortedValidatorGroups;
 };

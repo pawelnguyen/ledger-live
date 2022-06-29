@@ -11,7 +11,7 @@ export type StepId = "vote" | "connectDevice" | "confirmation";
 
 export type StepProps = {
   t: TFunction,
-  transitionTo: string => void,
+  transitionTo: (string: StepId) => void,
   device: ?Device,
   account: ?Account,
   parentAccount: ?Account,

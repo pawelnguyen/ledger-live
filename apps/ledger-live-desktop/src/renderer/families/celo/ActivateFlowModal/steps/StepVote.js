@@ -7,7 +7,10 @@ import { Trans } from "react-i18next";
 import type { StepProps } from "../types";
 
 import { getAccountBridge } from "@ledgerhq/live-common/lib/bridge";
-import { activatableVotes } from "@ledgerhq/live-common/lib/families/celo/logic";
+import {
+  activatableVotes,
+  fallbackValidatorGroup,
+} from "@ledgerhq/live-common/lib/families/celo/logic";
 
 import TrackPage from "~/renderer/analytics/TrackPage";
 import Box from "~/renderer/components/Box";
@@ -54,7 +57,9 @@ export default function StepVote({
     () =>
       votes?.map(vote => ({
         vote,
-        validatorGroup: validatorGroups.find(v => v.address === vote.validatorGroup),
+        validatorGroup:
+          validatorGroups.find(v => v.address === vote.validatorGroup) ||
+          fallbackValidatorGroup(vote.validatorGroup),
       })) || [],
     [votes, validatorGroups],
   );
@@ -63,7 +68,7 @@ export default function StepVote({
 
   return (
     <Box flow={1}>
-      <TrackPage category="Withdraw Flow" name="Step 1" />
+      <TrackPage category="Celo Activate" name="Step 1" />
       {error ? <ErrorBanner error={error} /> : null}
       <Box vertical>
         {mappedVotes.map(({ vote, validatorGroup }) => {

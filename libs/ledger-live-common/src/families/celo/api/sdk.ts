@@ -80,6 +80,7 @@ const getActivateTransactionObjects = async (address: string) => {
 
 /**
  * Fetch and cache address of a vote signer account
+ * Cache it for 1h since vote signer is usually the same account as our address
  */
 export const voteSignerAccount = makeLRUCache(
   async (address: string): Promise<string> => {

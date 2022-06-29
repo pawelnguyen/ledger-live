@@ -219,7 +219,7 @@ export const urls = {
     supportArticleLink:
       "https://launchbadge.com/blog/using-a-ledger-nano-to-create-your-hedera-account",
   },
-  // TODO: replace with a real links when available
+  // TODO: replace with real links when available
   celo: {
     ledgerByFigmentTC: "https://drive.google.com/file/d/1vlIh2gTwtbMon8_bzFQGjCLhTUqS5uQc",
     staking:

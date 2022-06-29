@@ -37,7 +37,7 @@ const updates = new Subject<CeloPreloadData>();
 export function getCurrentCeloPreloadData(): CeloPreloadData {
   return currentCeloPreloadedData;
 }
-export function setCeloPreloadData(data: CeloPreloadData) {
+function setCeloPreloadData(data: CeloPreloadData) {
   if (data === currentCeloPreloadedData) return;
   currentCeloPreloadedData = data;
   updates.next(data);

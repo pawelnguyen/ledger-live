@@ -18,7 +18,11 @@ import type { ThemedComponent } from "~/renderer/styles/StyleProvider";
 import { TableLine } from "./Header";
 import { CeloVote } from "@ledgerhq/live-common/lib/families/celo/types";
 import { useCeloPreloadData } from "@ledgerhq/live-common/lib/families/celo/react";
-import { isDefaultValidatorGroup, voteStatus } from "@ledgerhq/live-common/lib/families/celo/logic";
+import {
+  isDefaultValidatorGroup,
+  voteStatus,
+  fallbackValidatorGroup,
+} from "@ledgerhq/live-common/lib/families/celo/logic";
 import Logo from "~/renderer/icons/Logo";
 import { IconContainer } from "~/renderer/components/Delegation/ValidatorRow";
 
@@ -98,7 +102,9 @@ export function Row({ account, vote, onManageAction, onExternalLink }: Props) {
 
   const { validatorGroups } = useCeloPreloadData();
   const validatorGroup = useMemo(
-    () => validatorGroups.find(v => v.address === vote.validatorGroup),
+    () =>
+      validatorGroups.find(v => v.address === vote.validatorGroup) ||
+      fallbackValidatorGroup(vote.validatorGroup),
     [vote, validatorGroups],
   );
   const status = voteStatus(vote);

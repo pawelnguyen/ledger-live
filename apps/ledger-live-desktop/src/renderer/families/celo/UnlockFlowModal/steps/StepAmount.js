@@ -31,7 +31,7 @@ export default function StepAmount({
   return (
     <Box flow={1}>
       <SyncSkipUnderPriority priority={100} />
-      <TrackPage category="Unlock Flow" name="Step 1" />
+      <TrackPage category="Celo Unlock" name="Step 1" />
       {error && <ErrorBanner error={error} />}
       <Alert
         type="primary"
@@ -39,7 +39,7 @@ export default function StepAmount({
         learnMoreLabel={<Trans i18nKey="celo.unlock.steps.amount.learnMore" />}
         mb={4}
       >
-        Unlocked assets can be withdrawn after the 3-day unlocking period.
+        <Trans i18nKey="celo.unlock.steps.amount.info" />
       </Alert>
       <AmountField
         transaction={transaction}
@@ -66,7 +66,6 @@ export function StepAmountFooter({
   const { errors } = status;
   const hasErrors = Object.keys(errors).length;
   const canNext = !bridgePending && !hasErrors;
-  console.log('canNext', canNext, !bridgePending, !hasErrors, errors)
 
   return (
     <>

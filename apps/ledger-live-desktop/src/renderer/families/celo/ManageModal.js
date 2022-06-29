@@ -139,7 +139,7 @@ const ManageModal = ({ name, account, ...rest }: Props) => {
         <ModalBody
           onClose={onClose}
           onBack={undefined}
-          title={<Trans i18nKey="polkadot.manage.title" />}
+          title={<Trans i18nKey="celo.manage.title" />}
           noScroll
           render={() => (
             <>

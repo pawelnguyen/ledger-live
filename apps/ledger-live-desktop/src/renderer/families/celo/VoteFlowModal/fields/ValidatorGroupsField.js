@@ -46,7 +46,6 @@ const ValidatorGroupsField = ({
 
   /** auto focus first input on mount */
   useEffect(() => {
-    /** $FlowFixMe */
     if (containerRef && containerRef.current && containerRef.current.querySelector) {
       const firstInput = containerRef.current.querySelector("input");
       if (firstInput && firstInput.focus) firstInput.focus();

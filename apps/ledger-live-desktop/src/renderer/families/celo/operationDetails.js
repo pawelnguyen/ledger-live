@@ -18,6 +18,7 @@ import { SplitAddress } from "~/renderer/components/OperationsList/AddressCell";
 import { getAddressExplorer, getDefaultExplorerView } from "@ledgerhq/live-common/lib/explorers";
 import { openURL } from "~/renderer/linking";
 import FormattedVal from "~/renderer/components/FormattedVal";
+import { fallbackValidatorGroup } from "@ledgerhq/live-common/lib/families/celo/logic";
 
 const redirectAddress = (currency: Currency, address: string) => () => {
   const url = getAddressExplorer(getDefaultExplorerView(currency), address);
@@ -42,9 +43,10 @@ const OperationDetailsExtra = ({ operation, type, account }: OperationDetailsExt
       const recipient = operation.recipients[0];
       const validatorGroup =
         recipient &&
-        validatorGroups.find(
+        (validatorGroups.find(
           validatorGroup => validatorGroup.address.toLowerCase() === recipient.toLowerCase(),
-        );
+        ) ||
+          fallbackValidatorGroup(recipient));
 
       return (
         <>

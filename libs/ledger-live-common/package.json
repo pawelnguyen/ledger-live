@@ -34,11 +34,11 @@
     "reactNative.js"
   ],
   "peerDependencies": {
+    "@types/react": "*",
     "react": ">=16",
     "react-dom": ">=16",
     "react-native": ">=0.65.1",
-    "react-native-svg": ">=12.1.1",
-    "@types/react": "*"
+    "react-native-svg": ">=12.1.1"
   },
   "peerDependenciesMeta": {
     "react-dom": {
@@ -55,9 +55,11 @@
     "https": false
   },
   "dependencies": {
-    "@celo/contractkit": "^2.0.0",
-    "@celo/wallet-base": "^2.0.0",
-    "@celo/wallet-ledger": "^2.0.0",
+    "@celo/connect": "^1.5.2",
+    "@celo/contractkit": "^1.5.2",
+    "@celo/utils": "^1.5.2",
+    "@celo/wallet-base": "^1.5.2",
+    "@celo/wallet-ledger": "^1.5.2",
     "@cosmjs/amino": "^0.28.4",
     "@cosmjs/crypto": "^0.26.5",
     "@cosmjs/proto-signing": "^0.26.5",

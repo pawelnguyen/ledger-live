@@ -93,8 +93,8 @@ const Body = ({
   params,
   name,
 }: Props) => {
-  const [optimisticOperation, setOptimisticOperation] = useState(null);
-  const [transactionError, setTransactionError] = useState(null);
+  const [optimisticOperation, setOptimisticOperation] = useState<Operation | null>(null);
+  const [transactionError, setTransactionError] = useState<Error | null>(null);
   const [signed, setSigned] = useState(false);
   const dispatch = useDispatch();
 
@@ -157,7 +157,6 @@ const Body = ({
   ]);
 
   const error =
-    // WARNING: this is bad practice. out of scope but see context of a fix done for LL-3854
     transactionError || bridgeError || (statusError instanceof Error ? statusError : null);
 
   const stepperProps = {

@@ -77,9 +77,3 @@ export type CeloVoteRaw = {
 export type CeloPreloadData = {
   validatorGroups: CeloValidatorGroup[];
 };
-
-export type CoreStatics = Record<string, never>;
-export type CoreAccountSpecifics = Record<string, never>;
-export type CoreOperationSpecifics = Record<string, never>;
-export type CoreCurrencySpecifics = Record<string, never>;
-export const reflect = (_declare: any) => {};

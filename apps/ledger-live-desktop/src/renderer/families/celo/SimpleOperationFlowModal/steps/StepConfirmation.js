@@ -38,7 +38,7 @@ function StepConfirmation({
   if (optimisticOperation) {
     return (
       <Container>
-        <TrackPage category="Celo SimpleOperationFlow" name="Step Confirmed" />
+        <TrackPage category="Celo SimpleOperation" name="Step Confirmed" />
         <SyncOneAccountOnMount priority={10} accountId={optimisticOperation.accountId} />
         <SuccessDisplay
           title={
@@ -61,7 +61,7 @@ function StepConfirmation({
   if (error) {
     return (
       <Container shouldSpace={signed}>
-        <TrackPage category="Celo Flow" name="Step Confirmation Error" />
+        <TrackPage category="Celo SimpleOperation" name="Step Confirmation Error" />
         {signed ? (
           <BroadcastErrorDisclaimer
             title={<Trans i18nKey="celo.simpleOperation.steps.confirmation.broadcastError" />}

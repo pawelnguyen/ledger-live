@@ -11,7 +11,10 @@ import RevokeVoteRow from "../components/RevokeVoteRow";
 import type { StepProps } from "../types";
 import { useCeloPreloadData } from "@ledgerhq/live-common/lib/families/celo/react";
 import { getAccountUnit } from "@ledgerhq/live-common/lib/account";
-import { revokableVotes } from "@ledgerhq/live-common/lib/families/celo/logic";
+import {
+  revokableVotes,
+  fallbackValidatorGroup,
+} from "@ledgerhq/live-common/lib/families/celo/logic";
 import Alert from "~/renderer/components/Alert";
 import { urls } from "~/config/urls";
 
@@ -51,7 +54,9 @@ export default function StepVote({
     () =>
       votes?.map(vote => ({
         vote,
-        validatorGroup: validatorGroups.find(v => v.address === vote.validatorGroup),
+        validatorGroup:
+          validatorGroups.find(v => v.address === vote.validatorGroup) ||
+          fallbackValidatorGroup(vote.validatorGroup),
       })) || [],
     [votes, validatorGroups],
   );
@@ -60,7 +65,7 @@ export default function StepVote({
 
   return (
     <Box flow={1}>
-      <TrackPage category="Withdraw Flow" name="Step 1" />
+      <TrackPage category="Celo Revoke" name="Step 1" />
       {error ? <ErrorBanner error={error} /> : null}
       <Alert type="primary" mb={4} learnMoreUrl={urls.celo.revoking}>
         <Trans i18nKey="celo.revoke.steps.vote.info" />

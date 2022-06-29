@@ -28,7 +28,7 @@ function StepConfirmation({ t, optimisticOperation, error, signed }: StepProps &
   if (optimisticOperation) {
     return (
       <Container>
-        <TrackPage category="Celo Vote" name="Step Confirmation" />
+        <TrackPage category="Celo Revoke" name="Step Confirmation" />
         <SyncOneAccountOnMount priority={10} accountId={optimisticOperation.accountId} />
         <SuccessDisplay
           title={<Trans i18nKey="celo.revoke.steps.confirmation.success.title" />}
@@ -41,7 +41,7 @@ function StepConfirmation({ t, optimisticOperation, error, signed }: StepProps &
   if (error) {
     return (
       <Container shouldSpace={signed}>
-        <TrackPage category="Vote Celo" name="Step Confirmation Error" />
+        <TrackPage category="Celo Revoke" name="Step Confirmation Error" />
         {signed ? (
           <BroadcastErrorDisclaimer
             title={<Trans i18nKey="celo.revoke.steps.confirmation.broadcastError" />}
